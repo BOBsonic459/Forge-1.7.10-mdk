@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://maven.minecraftforge.net/"
+        }
+        maven {
+            name = "sonatype-sna"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            name = "sonatype-rel"
+            url = "https://oss.sonatype.org/content/repositories/releases/"
+        }
+        maven {
+            name = "bobsonic-rel"
+            url = "http://bobsonic.com:8282/releases/"
+        }
+        maven {
+            name = "bobsonic-sna"
+            url = "http://bobsonic.com:8282/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+version = "0.0.1"
+group= "fr.bobsonic.examplemdk"
+archivesBaseName = "ExampleMDK"
+compileJava.options.encoding = 'UTF-8'
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+
+}
+
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
