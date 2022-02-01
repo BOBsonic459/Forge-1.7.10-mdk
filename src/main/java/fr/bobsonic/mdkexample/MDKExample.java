@@ -17,12 +17,12 @@ public class MDKExample {
 	}
 	
 	@EventHandler
-	public void preInit(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event) {
 		Logger.debug("Mod entering to initializationt phase");
 	}
 	
 	@EventHandler
-	public void preInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event) {
 		Logger.debug("Mod entering to post initializationt phase");
 	}
 	
